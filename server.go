@@ -22,6 +22,7 @@ func newUpgrader() *websocket.Upgrader {
 	u.OnOpen(func(c *websocket.Conn) {
 		// echo
 		fmt.Println("OnOpen:", c.RemoteAddr().String())
+		c.WriteMessage(websocket.TextMessage, []byte("Hi there!"))
 	})
 	u.OnMessage(func(c *websocket.Conn, messageType websocket.MessageType, data []byte) {
 		// echo
